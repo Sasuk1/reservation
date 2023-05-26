@@ -1,0 +1,77 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hotels</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+</head>
+
+<body style="padding: 100px;">
+    <h1 style="text-align: center;">Reservations</h1>
+    <br>
+    <a href="/Flights/Hotels/reservations" style="text-decoration: none;color: blue;border: 1px solid blue;padding: 10px;float: right;">Reservations</a>
+    <br>
+    <br>
+    <br>
+    <table id="hotelsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% hotels.forEach(function(hotel) { %>
+            <!-- Hotels data will be dynamically inserted here -->
+            <tr style="text-align: center;">
+                <td><%= hotel.id %></td>
+                <td><%= hotel.reservation_id %></td>
+                <td><%= hotel.hotel_id %></td>
+                <td>
+                    <button class="deleteBtn" data-id="<%= hotel.id %>">Delete</button>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // hotels.js
+
+        $(document).ready(function () {
+            // Initialize DataTable
+            $('#hotelsTable').DataTable();
+
+            // Add event listener for delete buttons
+            $('.deleteBtn').on('click', function () {
+                const reservationId = $(this).data('id');
+                deleteReservation(reservationId);
+            });
+        });
+
+        // Function to delete a reservation
+        function deleteReservation(reservationId) {
+            // Send DELETE request using Axios
+            axios.delete(`/Flights/Hotels/reservations/delete?id=${reservationId}`)
+                .then(function (response) {
+                    // Handle success
+                    console.log(response.data);
+                    // Refresh the page to reflect the updated reservations
+                    location.reload();
+                })
+                .catch(function (error) {
+                    // Handle error
+                    console.error(error);
+                });
+        }
+    </script>
+</body>
+
+</html>

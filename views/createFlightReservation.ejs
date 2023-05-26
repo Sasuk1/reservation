@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Flight Reservation</title>
+  </head>
+  <body>
+    <h1>Create Flight Reservation</h1>
+    <form action="/Flights/createFlightReservation" method="post">
+      <div>
+        <label for="reservationId">Reservation ID:</label>
+        <input type="text" id="reservationId" name="reservationId" value="<%= reservationid %>" required />
+      </div>
+      <div>
+        <label for="flightId">Flight ID:</label>
+        <input type="text" id="flightId" name="flightId" value="<%= flightId %>" required />
+      </div>
+      <button type="submit">Create Reservation</button>
+    </form>
+  </body>
+</html>

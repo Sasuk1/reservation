@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function generateRandomString(length, characters) {
+            let result = '';
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+
+        function generateFlightId() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const randomLetters = generateRandomString(3, letters);
+            const randomNumbers = generateRandomString(4, '0123456789');
+            return randomLetters + randomNumbers;
+        }
+
+        window.onload = function() {
+            const idInput = document.querySelector('input[placeholder="ID"]');
+            idInput.value = generateFlightId();
+        };
+    </script>
+</head>
+<body>
+    <form method="post" action="/Flights/create/creating">
+        <input type="text" name="id" placeholder="ID">
+        <input type="text" name="airline" placeholder="Airline">
+        <input type="text" name="destination" placeholder="Destination">
+        <select name="status">
+            <option>Delayed</option>
+            <option>On time</option>
+            <option>Boarding</option>
+        </select>
+        <input type="submit">
+    </form>
+</body>
+</html>

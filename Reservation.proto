@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package reservation;
+
+message Flight {
+  string id = 1;
+  string airline = 2;
+  string destination = 3;
+  string status = 4;
+}
+
+message Hotel {
+  string id = 1;
+  string name = 2;
+  string location = 3;
+}
+
+message GetFlightReservationRequest {
+  string reservation_id = 1;
+}
+
+message GetFlightReservationResponse {
+  Flight flight = 1;
+}
+
+message GetHotelReservationRequest {
+  string reservation_id = 1;
+}
+
+message GetHotelReservationResponse {
+  Hotel hotel = 1;
+}
+
+message SearchFlightsRequest {
+  string query = 1;
+}
+
+message SearchFlightsResponse {
+  repeated Flight flights = 1;
+}
+
+message SearchHotelsRequest {
+  string query = 1;
+}
+
+message SearchHotelsResponse {
+  repeated Hotel hotels = 1;
+}
+
+message CreateFlightReservationRequest {
+  string reservation_id = 1;
+  string flight_id = 2;
+}
+
+message CreateFlightReservationResponse {
+  Flight flight = 1;
+}
+
+message CreateHotelReservationRequest {
+  string reservation_id = 1;
+  string hotel_id = 2;
+}
+
+message CreateHotelReservationResponse {
+  Hotel hotel = 1;
+}
+// New message for creating a flight
+message CreateFlightRequest {
+  string airline = 1;
+  string destination = 2;
+  string status = 3;
+}
+
+message CreateFlightResponse {
+  Flight flight = 1;
+}
+
+service ReservationService {
+  rpc GetFlightReservation(GetFlightReservationRequest) returns (GetFlightReservationResponse);
+  rpc GetHotelReservation(GetHotelReservationRequest) returns (GetHotelReservationResponse);
+  rpc SearchFlights(SearchFlightsRequest) returns (SearchFlightsResponse);
+  rpc SearchHotels(SearchHotelsRequest) returns (SearchHotelsResponse);
+  rpc CreateFlightReservation(CreateFlightReservationRequest) returns (CreateFlightReservationResponse);
+  rpc CreateHotelReservation(CreateHotelReservationRequest) returns (CreateHotelReservationResponse);
+  // New RPC for creating a flight
+  rpc CreateFlight(CreateFlightRequest) returns (CreateFlightResponse);
+}

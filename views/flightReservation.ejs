@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flight Reservation</title>
+  </head>
+  <body>
+    <h1>Flight Reservation</h1>
+    <div>
+      <label for="reservationId">Reservation ID:</label>
+      <span id="reservationId"><%= flightReservation.reservation_id %></span>
+    </div>
+    <div>
+      <label for="flightId">Flight ID:</label>
+      <span id="flightId"><%= flightReservation.flight_id %></span>
+    </div>
+    <div>
+      <label for="airline">Airline:</label>
+      <span id="airline"><%= flightReservation.flight.airline %></span>
+    </div>
+    <div>
+      <label for="destination">Destination:</label>
+      <span id="destination"><%= flightReservation.flight.destination %></span>
+    </div>
+    <div>
+      <label for="status">Status:</label>
+      <span id="status"><%= flightReservation.flight.status %></span>
+    </div>
+  </body>
+</html>

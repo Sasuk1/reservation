@@ -1,0 +1,55 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hotels</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+</head>
+
+<body style="padding: 100px;">
+    <h1 style="text-align: center;">Hotels In <%= location %></h1>
+    <br>
+    <a href="/Flights/Hotels/reservations" style="text-decoration: none;color: blue;border: 1px solid blue;padding: 10px;float: right;">Reservations</a>
+    <br>
+    <br>
+    <br>
+    <table id="hotelsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% hotels.forEach(function(hotel) { %>
+            <!-- Hotels data will be dynamically inserted here -->
+            <tr style="text-align: center;">
+                <td><%= hotel.id %></td>
+                <td><%= hotel.name %></td>
+                <td><%= hotel.location %></td>
+                <td>
+                    <a style="text-decoration: none;color: green;font-style: oblique;" href="/Flights/Hotels/createHotelReservation?id=<%= hotel.id %>-<%= reservationId %>">Get Reservation</a>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script>
+        // hotels.js
+
+        $(document).ready(function () {
+            // Initialize DataTable
+            $('#hotelsTable').DataTable();
+        });
+
+    </script>
+</body>
+
+</html>
